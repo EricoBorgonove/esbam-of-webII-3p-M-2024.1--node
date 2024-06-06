@@ -2,6 +2,10 @@ const express = require('express')
 const router = express.Router()
 
 const path = require('path')
+const UsersController = require('../controllers/UsersController')
+
+
+router.get('/user',UsersController.showAll)
 
 router.get ('/',(req, res)=> {
     res.send ("ola bom dia ")
