@@ -13,7 +13,60 @@ module.exports = class UsersController {
                 error: e.message
             })
         }
-          
-        
+    }
+    static async show (req, res){
+        try {
+            const user = await Users.findByPk(req.params.id)
+            res.status(200).send(user)
+        } catch (e) {
+            res.status(500).json({
+                error: e.message
+            })
+            
+        }
+    }
+    static async create(req, res){
+        try {
+            const user = await Users.create({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: req.body.password
+        })
+        res.status(201).send("Usuário Criado com Sucesso !!")
+        } catch (e) {
+            res.status(500).json({
+                error: e.message
+            })          
+        }
+    }
+
+    static async update (req, res){
+        try {
+            const user = await Users.findByPk(req.params.id)
+            const result = await Users.create({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: req.body.password
+        })
+        res.status(200).send("Usuário Atualizado com Sucesso !!")
+        } catch (e) {
+            res.status(500).json({
+                error: e.message
+            })          
+        }
+    }
+    static async delete (req, res){
+        try {
+            const user = await Users.findByPk(req.params.id)
+            await Users.destroy()
+            res.status(200).send("Excluido com Sucesso.")
+        } catch (e) {
+            res.status(500).json({
+                error: e.message
+            })
+            
+        }
     }
 }

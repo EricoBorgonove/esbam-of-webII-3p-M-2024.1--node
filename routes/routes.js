@@ -5,7 +5,12 @@ const path = require('path')
 const UsersController = require('../controllers/UsersController')
 
 
-router.get('/user',UsersController.showAll)
+router.get('/users',UsersController.showAll)
+router.get('/users/:id',UsersController.show)
+router.post('/users',UsersController.create)
+
+router.put('/users/:id',UsersController.update)
+router.delete('/users/:id',UsersController.delete)
 
 router.get ('/',(req, res)=> {
     res.send ("ola bom dia ")
